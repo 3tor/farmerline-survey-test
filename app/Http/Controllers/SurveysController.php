@@ -31,6 +31,6 @@ class SurveysController extends Controller
 
     public function show($id)
     {
-        return Survey::find($id);
+        return Survey::all($id);
     }
 }
