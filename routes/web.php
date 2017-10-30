@@ -17,3 +17,7 @@ Route::get('/', function () {
 
 Route::get('/survey/data', 'SurveysController@index');
 Route::post('/survey/data', 'SurveysController@store');
+Route::get('/survey/data/{id}', 'SurveysController@show');
+
+Route::get('/survey/title', 'QuestionnairesController@index');
+Route::post('/survey/title', 'QuestionnairesController@store');

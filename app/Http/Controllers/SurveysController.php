@@ -18,6 +18,7 @@ class SurveysController extends Controller
         $survey = new Survey;
         $survey->question = request('question');
         $survey->questionType = request('questionType');
+        $survey->title_id = request('title_id');
         $survey->option1 = request('option1');
         $survey->option2 = request('option2');
         $survey->option3 = request('option3');
@@ -26,5 +27,10 @@ class SurveysController extends Controller
         $survey->save();
 
         return 'Question added';
+    }
+
+    public function show($id)
+    {
+        return Survey::find($id);
     }
 }

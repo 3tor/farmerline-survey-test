@@ -17,7 +17,7 @@ bookWishlistApp.config(['$routeProvider', function($routeProvider) {
         controller: 'TakeSurveyController',
         controllerAs: 'take'
     }).
-     when('/view_survey_results', {
+    when('/view_survey_results', {
         templateUrl: 'partials/viewSurvey.html',
         controller: 'ViewSurveyController'
     }).

@@ -1,59 +1,98 @@
-<!--<div class="jumbotron text-center">-->
 <div class="row">
-    <div class="col-lg-6">
-        <form role="form" name="createSurveyForm" ng-submit="create.createSurveySubmit(createSurveyForm)" novalidate>
-            <div class="form-group">
-                <label>Question</label>
-                <input class="form-control" placeholder="Question" name="question" ng-model="create.surveyFormData.question" required>
-                <div>
-                    <span ng-if="createSurveyForm.question.$error.required && !createSurveyForm.question.$pristine" style="color: red; background: transparent; padding: 5px; 
-                      border-radius:5px; font-size: 1.5em;">Question is required.</span>
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Create Survey Title</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form role="form" name="createSurveyTitleForm" ng-submit="create.createSurveyTitleSubmit(createSurveyTitleForm)" novalidate>
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input class="form-control" placeholder="Title" name="title" ng-model="create.surveyTitleData.title" required>
+                                <div>
+                                    <span ng-if="createSurveyTitleForm.title.$error.required && !createSurveyTitleForm.title.$pristine" style="color: red; background: transparent; padding: 5px; 
+                                        border-radius:5px; font-size: 1.5em;">Title is required.</span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" ng-class="{'disabled': createSurveyTitleForm.$invalid}">Add Title</button>
+
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label>Question type</label>
-                <!--<input class="form-control" placeholder="Lastname" name="lastname" ng-model="addemployee.regFormData.lastname" required>-->
-                <select class="form-control" ng-model="create.surveyFormData.questionType" required>
-                    <option value="Single">Single Choice</option>
-                    <option value="Multiple">Multiple Choice</option>
-                    <option value="Number">Number</option>
-                    <option value="Text">Text</option>
-                </select>
-                <div>
-                    <span ng-if="createSurveyForm.questionType.$error.required && !createSurveyForm.questionType.$pristine" style="color: red; background: transparent; padding: 5px; 
-                        border-radius:5px; font-size: 1.5em;">Question type is required.</span>
-                </div>
-            </div>
-            <div class="form-group" ng-if="(create.surveyFormData.questionType == 'Multiple') || (create.surveyFormData.questionType == 'Number') || (create.surveyFormData.questionType == 'Single')">
-                <label>Option 1</label>
-                <input class="form-control" placeholder="Option 1" name="option1" ng-model="create.surveyFormData.option1" required>
-                <div>
-                    <span ng-if="createSurveyForm.option1.$error.required && !createSurveyForm.option1.$pristine" style="color: red; background: transparent; padding: 5px; 
-                      border-radius:5px; font-size: 1.5em;">At least one option is required</span>
-                </div>
-            </div>
-              <div class="form-group" ng-if="(create.surveyFormData.questionType == 'Multiple') || (create.surveyFormData.questionType == 'Number') || (create.surveyFormData.questionType == 'Single')">
-                <label>Option 2</label>
-                <input class="form-control" placeholder="Option 2" name="option2" ng-model="create.surveyFormData.option2" required>
-                <div>
-                    <span ng-if="createSurveyForm.option2.$error.required && !createSurveyForm.option2.$pristine" style="color: red; background: transparent; padding: 5px; 
-                      border-radius:5px; font-size: 1.5em;">At least one option is required.</span>
-                </div>
-            </div>
-              <div class="form-group" ng-if="(create.surveyFormData.questionType == 'Multiple') || (create.surveyFormData.questionType == 'Number') || (create.surveyFormData.questionType == 'Single')">
-                <label>Option 3</label>
-                <input class="form-control" placeholder="Option 3" name="option3" ng-model="create.surveyFormData.option3">
-            </div>
-              <div class="form-group" ng-if="(create.surveyFormData.questionType == 'Multiple') || (create.surveyFormData.questionType == 'Number') || (create.surveyFormData.questionType == 'Single')">
-                <label>Option 4</label>
-                <input class="form-control" placeholder="Staff Id" name="option4" ng-model="create.surveyFormData.option4">
-            </div>
-           
+        </div>
 
 
-            <button type="submit" class="btn btn-success" ng-class="{'disabled': createSurveyForm.$invalid}">Add Question</button>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Create Survey</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form role="form" name="createSurveyForm" ng-submit="create.createSurveySubmit(createSurveyForm)" novalidate>
+                            <div class="form-group">
+                                <label>Title</label>
+                               <select class="form-control" ng-model="create.surveyFormData.title" required>
+                                <option value="">Select a title</option>
+                                <option ng-repeat="list in create.titleList" value="{{list.id}}">{{list.title}}</option>
+                            </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Question</label>
+                                <input class="form-control" placeholder="Question" name="question" ng-model="create.surveyFormData.question" required>
+                                <div>
+                                    <span ng-if="createSurveyForm.question.$error.required && !createSurveyForm.question.$pristine" style="color: red; background: transparent; padding: 5px; 
+                                        border-radius:5px; font-size: 1.5em;">Question is required.</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Question type</label>
+                                <select class="form-control" ng-model="create.surveyFormData.questionType" required>
+                                    <option value="Single">Single Choice</option>
+                                    <option value="Multiple">Multiple Choice</option>
+                                    <option value="Number">Number</option>
+                                    <option value="Text">Text</option>
+                                </select>
+                                <div>
+                                    <span ng-if="createSurveyForm.questionType.$error.required && !createSurveyForm.questionType.$pristine" style="color: red; background: transparent; padding: 5px; 
+                                         border-radius:5px; font-size: 1.5em;">Question type is required.</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if="(create.surveyFormData.questionType == 'Multiple') || (create.surveyFormData.questionType == 'Single')">
+                                <label>Option 1</label>
+                                <input class="form-control" placeholder="Option 1" name="option1" ng-model="create.surveyFormData.option1" required>
+                                <div>
+                                    <span ng-if="createSurveyForm.option1.$error.required && !createSurveyForm.option1.$pristine" style="color: red; background: transparent; padding: 5px; 
+                                     border-radius:5px; font-size: 1.5em;">At least one option is required</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if="(create.surveyFormData.questionType == 'Multiple') || (create.surveyFormData.questionType == 'Single')">
+                                <label>Option 2</label>
+                                <input class="form-control" placeholder="Option 2" name="option2" ng-model="create.surveyFormData.option2" required>
+                                <div>
+                                    <span ng-if="createSurveyForm.option2.$error.required && !createSurveyForm.option2.$pristine" style="color: red; background: transparent; padding: 5px; 
+                                     border-radius:5px; font-size: 1.5em;">At least one option is required.</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-if="(create.surveyFormData.questionType == 'Multiple') || (create.surveyFormData.questionType == 'Single')">
+                                <label>Option 3</label>
+                                <input class="form-control" placeholder="Option 3" name="option3" ng-model="create.surveyFormData.option3">
+                            </div>
+                            <div class="form-group" ng-if="(create.surveyFormData.questionType == 'Multiple') || (create.surveyFormData.questionType == 'Single')">
+                                <label>Option 4</label>
+                                <input class="form-control" placeholder="Staff Id" name="option4" ng-model="create.surveyFormData.option4">
+                            </div>
 
-        </form>
+                            <button type="submit" class="btn btn-primary" ng-class="{'disabled': createSurveyForm.$invalid}">Add Question</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<!--</div>-->

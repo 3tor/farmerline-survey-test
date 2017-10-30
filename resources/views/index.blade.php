@@ -47,7 +47,7 @@
   </div>
   
   <footer class="text-center">
-    <p>View the test on <a href="http://scotch.io/tutorials/javascript/single-page-apps-with-angularjs-routing-and-templating">GitHub</a></p>
+    <p>View the test on <a target="_blank" href="https://github.com/3tor/farmerline-survey-test">GitHub</a></p>
   
     <p>Done by <a href="/">Etornam</a></p>
   </footer>

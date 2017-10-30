@@ -6,15 +6,29 @@ bookWishlistAppServices.factory('userService', ['$http', function($http) {
           submitSurvey: function (data) {
             return $http({
                 method: 'POST',
-                url: 'http://localhost:8000/survey/data',
+                url: '/survey/data',
                 data: $.param(data),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
         },
-        getSurveyData: function () {
+        getSurveyData: function (id) {
              return $http({
                 method: 'GET',
-                url: 'http://localhost:8000/survey/data'
+                url: '/survey/data/' + id
+            })
+        },
+        submitTitle: function (data) {
+            return $http({
+                method: 'POST',
+                url: '/survey/title',
+                data: $.param(data),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }) 
+        },
+        getTitle: function() {
+            return $http({
+                method: 'GET',
+                url: '/survey/title'
             })
         }
     }

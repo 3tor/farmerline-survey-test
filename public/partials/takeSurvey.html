@@ -1,3 +1,75 @@
-<p>signup screen</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Take Survey</h3>
+            </div>
 
-<p>{{ message }}</p>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--<label>Category</label>-->
+                        <div class="form-group">
+                            <label>Title</label>
+                            <select class="form-control" ng-change="take.getSurveyQuestions(take.title)" ng-model="take.title" required>
+                                <option value="">Select a title</option>
+                                <option ng-repeat="list in take.titleList" value="{{list.id}}">{{list.title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form role="form" name="takeSurveyForm" ng-submit="take.takeSurveySubmit(takeSurveyForm)" novalidate>
+                            <div class="form-group" ng-repeat="list in take.surveyList">
+                                <label>{{list.question}}</label>
+                                <div ng-if="list.questionType == 'Text'">
+                                    <input class="form-control" placeholder="{{list.question}}" ng-model="take.takenSurveyData[list.id]" type="text" required>
+                                </div>
+                                <div ng-if="list.questionType == 'Single'">
+                                    <select class="form-control" ng-model="take.takenSurveyData[list.id]" required>
+                                        <option value="">Select</option>
+                                        <option ng-if="list.option1" value="{{list.option1}}">{{list.option1}}</option>
+                                        <option ng-if="list.option2" value="{{list.option2}}">{{list.option2}}</option>
+                                        <option ng-if="list.option3" value="{{list.option3}}">{{list.option3}}</option>
+                                        <option ng-if="list.option4" value="{{list.option4}}">{{list.option4}}</option>
+                                    </select>
+                                </div>
+                                <div ng-if="list.questionType == 'Multiple'">
+                                    <label ng-if="list.option1">
+                                        <input type="checkbox" ng-model="take.takenSurveyData.mult1" value="{{list.option1}}"> {{list.option1}}
+                                    </label>
+                                    <label ng-if="list.option2">
+                                        <input type="checkbox" ng-model="take.takenSurveyData.mult2" value="{{list.option2}}"> {{list.option2}}
+                                    </label>
+                                    <label ng-if="list.option3">
+                                        <input type="checkbox" ng-model="take.takenSurveyData.mult3" value="{{list.option3}}"> {{list.option3}}
+                                    </label>
+                                    <label ng-if="list.option4">
+                                        <input type="checkbox" ng-model="take.takenSurveyData.mult4" value="{{list.option4}}"> {{list.option4}}
+                                    </label>
+                                </div>
+                                <!--<div ng-if="list.questionType == 'Multiple'">
+                                    <label>Multiple Selects</label>
+                                    <select multiple class="form-control" ng-model="take.takenSurveyData[list.id]" required>
+                                        <option ng-if="list.option1" value="{{list.option1}}">{{list.option1}}</option>
+                                        <option ng-if="list.option2" value="{{list.option2}}">{{list.option2}}</option>
+                                        <option ng-if="list.option3" value="{{list.option3}}">{{list.option3}}</option>
+                                        <option ng-if="list.option4" value="{{list.option4}}">{{list.option4}}</option>
+                                    </select>
+                                </div>-->
+                                <div ng-if="list.questionType == 'Number'">
+                                    <input class="form-control" placeholder="" type="number" name="question" ng-model="take.takenSurveyData[list.id]" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" ng-class="{'disabled': takeSurveyForm.$invalid}">Complete Survey</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
