@@ -1,10 +1,11 @@
-var bookWishlistApp = angular.module('bookWishlistApp', [
+var surveyApp = angular.module('surveyApp', [
   'ngRoute',
-  'bookWishlistAppControllers',
-  'bookWishlistAppServices'
+  'surveyAppControllers',
+  'surveyAppServices',
+  'toastr'
 ]);
 
-bookWishlistApp.config(['$routeProvider', function($routeProvider) {
+surveyApp.config(['$routeProvider', function($routeProvider) {
     
     $routeProvider.
     when('/create_survey', {
@@ -19,7 +20,8 @@ bookWishlistApp.config(['$routeProvider', function($routeProvider) {
     }).
     when('/view_survey_results', {
         templateUrl: 'partials/viewSurvey.html',
-        controller: 'ViewSurveyController'
+        controller: 'ViewSurveyController',
+        controllerAs: 'result'
     }).
     when('/', {
         templateUrl: 'partials/index.html',

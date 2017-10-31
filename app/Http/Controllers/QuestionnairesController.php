@@ -20,6 +20,8 @@ class QuestionnairesController extends Controller
 
         $questionnaire->save();
 
-        return 'Survey title added';
+        $msg['status'] = 200;
+        $msg['message'] = 'Survey title added';
+        return json_encode($msg);
     }
 }

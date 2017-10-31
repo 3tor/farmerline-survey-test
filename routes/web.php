@@ -21,3 +21,6 @@ Route::get('/survey/data/{id}', 'SurveysController@show');
 
 Route::get('/survey/title', 'QuestionnairesController@index');
 Route::post('/survey/title', 'QuestionnairesController@store');
+
+Route::post('/survey/answer', 'AnswersController@store');
+Route::get('/survey/result/{id}', 'AnswersController@result');

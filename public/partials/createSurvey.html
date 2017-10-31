@@ -9,8 +9,8 @@
                     <div class="col-lg-6">
                         <form role="form" name="createSurveyTitleForm" ng-submit="create.createSurveyTitleSubmit(createSurveyTitleForm)" novalidate>
                             <div class="form-group">
-                                <label>Title</label>
-                                <input class="form-control" placeholder="Title" name="title" ng-model="create.surveyTitleData.title" required>
+                                <label>Survey Title</label>
+                                <input class="form-control" placeholder="Please input a survey title" name="title" ng-model="create.surveyTitleData.title" required>
                                 <div>
                                     <span ng-if="createSurveyTitleForm.title.$error.required && !createSurveyTitleForm.title.$pristine" style="color: red; background: transparent; padding: 5px; 
                                         border-radius:5px; font-size: 1.5em;">Title is required.</span>
@@ -52,6 +52,7 @@
                             <div class="form-group">
                                 <label>Question type</label>
                                 <select class="form-control" ng-model="create.surveyFormData.questionType" required>
+                                    <option value="">Select a question type</option>
                                     <option value="Single">Single Choice</option>
                                     <option value="Multiple">Multiple Choice</option>
                                     <option value="Number">Number</option>

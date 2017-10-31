@@ -1,1 +1,93 @@
-<p>signup screen</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">View Survey Results</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--<label>Category</label>-->
+                        <div class="form-group">
+                            <label>Survey Title</label>
+                            <select class="form-control" ng-change="result.getSurveyResults(result.title)" ng-model="result.title" required>
+                                <option value="">Select a title</option>
+                                <option ng-repeat="list in result.titleList" value="{{list.id}}">{{list.title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<center data-ng-if="result.custSpinnerShow">
+    <h5 class="text-center"><b>Loading<i class="fa fa-spinner fa-spin fa-lg"></i></b></h5>
+</center>
+<div class="row" ng-if="result.surveyResult">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Survey Results for - {{result.survTitle}}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Question</th>
+                                        <th>Answers</th>
+                                        <th>Option 1</th>
+                                        <th>Option 2</th>
+                                        <th>Option 3</th>
+                                        <th>Option 4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr ng-repeat="(list, $index) in result.surveyResult.surveys"> -->
+                                    <!-- <tr ng-repeat="list in result.surveyResult.surveys"> -->
+                                    <tr ng-repeat="list in result.surveyResult.surveys">
+                                        <td>{{$index+1}}</td>
+                                        <!-- <td></td> -->
+                                        <td>{{list.question}}</td>
+                                        <td>
+                                            <span ng-if="list.questionType !== 'Multiple'">
+                                                <span ng-repeat="ans in results = (result.surveyResult.answers | filter:{quesId: list.id})">{{ans.quesAns}},&nbsp;</span>                                            <b>total: {{results.length}}</b>
+                                            </span>
+                                        </td>
+                                        <!-- <td>
+                                            <span  ng-repeat="ans in result.surveyResult.answers |filter: {quesId: list.id}">{{ans.quesAns}},&nbsp;</span>
+                                        </td> -->
+                                        <td>
+                                            <span ng-if="list.questionType == 'Multiple'">
+                                                <span ng-repeat="ans in results = (result.surveyResult.answers | filter:{quesId: list.id} | filter:{option1: ''})">{{ans.option1}},&nbsp;</span>                                            <b>total: {{results.length}}</b>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span ng-if="list.questionType == 'Multiple'">
+                                                <span ng-repeat="ans in results = (result.surveyResult.answers | filter:{quesId: list.id} | filter:{option2: ''})">{{ans.option2}},&nbsp;</span>                                            <b>total: {{results.length}}</b>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span ng-if="list.questionType == 'Multiple'">
+                                                <span ng-repeat="ans in results = (result.surveyResult.answers | filter:{quesId: list.id} | filter:{option3: ''})">{{ans.option3}},&nbsp;</span>                                            <b>total: {{results.length}}</b>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span ng-if="list.questionType == 'Multiple'">
+                                                <span ng-repeat="ans in results = (result.surveyResult.answers | filter:{quesId: list.id} | filter:{option4: ''})">{{ans.option4}},&nbsp;</span>                                            <b>total: {{results.length}}</b>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
